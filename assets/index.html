@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Hangman Game</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>Chicago Cubs Hangman<h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				Cubs Image
+			</div>
+			<div class="col-md-6">
+				<div class="row">
+					<div class="col-md-12">
+						Press Any Key to Get Started!
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						Wins
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						Current Word
+					</div>
+				<div class="row">
+					<div class="col-md-12">
+						<span id="Word"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						Number of Guesses Remaining
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<span id="NumberGuess">15</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						Letters Already Guessed
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						X
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	// Here we have the computer's choices
+	var computerChoices = ["Sammy","Goat","Rizzo","Curse","Bryant","Wood"];
+
+	// This is the computer's guess
+	var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+	// This parses the computer's guess into an array of letters
+	var computerSplit = computerGuess.split("");
+
+	document.onkeydown = function display (event) {
+		var userGuess = event.key;
+		if (userGuess = "r"){computerSplit.display = computerSplit}
+		else{computerSplit.display === "none"
+			};
+		}
+
+	//This displays the letters of the computers guess
+	document.getElementById("Word").innerHTML = computerSplit;
+
+	var down = 15
+	document.onkeydown = function() {
+		if (down > 0){down--}
+		else{down = 0}
+		document.getElementById("NumberGuess").innerHTML = down
+      };
+</script>
+</html>
