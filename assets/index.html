@@ -23,7 +23,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-						Wins
+						Wins <span id=wincount></span>
 					</div>
 				</div>
 				<div class="row">
@@ -52,7 +52,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-						X
+						<span id="guessedLetter"></span>
 					</div>
 				</div>
 			</div>
@@ -61,29 +61,51 @@
 </body>
 <script type="text/javascript">
 	// Here we have the computer's choices
-	var computerChoices = ["Sammy","Goat","Rizzo","Curse","Bryant","Wood"];
+	var computerChoices = ["sammy","goat","rizzo","curse","bryant","wood"];
+	var wins = 0;
+	var down = 15;
 
-	// This is the computer's guess
+	// This is the computer's choice
 	var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
 	// This parses the computer's guess into an array of letters
-	var computerSplit = computerGuess.split("");
+	var computerSplit = []
 
-	document.onkeydown = function display (event) {
-		var userGuess = event.key;
-		if (userGuess = "r"){computerSplit.display = computerSplit}
-		else{computerSplit.display === "none"
-			};
+	//This turns the letters into dashes
+	for(var i = 0; i < computerGuess.length; i++){
+		computerSplit[i] = "-"
+	};
+
+	var remaining = computerGuess.length
+
+	document.onkeyup = function (event){
+		var userGuess = event.key
+		if ((remaining > 0)&&(down > 0)){
+
+			for (var j = 0; j < computerGuess.length; j++){
+				if (computerGuess[j] === userGuess){
+				computerSplit[j] = userGuess;
+				remaining--;
+				}
+			}	
 		}
+		else if ((remaining === 0) && (down > 0)){
+			wins++
+		}
+	//This displays the letters of the computers guess	
+	document.getElementById("Word").innerHTML = computerSplit.join(" ");
+	//This lowers the counter
+	document.getElementById("NumberGuess").innerHTML = down
+	//This increases the win count
+	document.getElementById("wincount").innerHTML = wins
+	}
+//This displays the letters of the computers guess	
+	document.getElementById("Word").innerHTML = computerSplit.join(" ");
+	
 
-	//This displays the letters of the computers guess
-	document.getElementById("Word").innerHTML = computerSplit;
 
-	var down = 15
-	document.onkeydown = function() {
-		if (down > 0){down--}
-		else{down = 0}
-		document.getElementById("NumberGuess").innerHTML = down
-      };
+
+
+
 </script>
 </html>
