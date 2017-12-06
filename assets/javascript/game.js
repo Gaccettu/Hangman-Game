@@ -28,9 +28,15 @@ var wins = 0;
 		var letterfound = false;
 		var letterused = false;
 
-		if ((down > 0) && (remaining > 0)){
+
+		if ((down > 0) && (remaining > 0) ){
+			for (var n = 0; n < computerSplit.length; n++){
+				if(computerSplit[n] === userGuess){
+					letterused = true;
+				}
+			}
 			for (var j = 0; j < computerGuess.length; j++){
-				if (computerGuess[j] === userGuess){
+				if ((computerGuess[j] === userGuess) && (letterused === false)){
 				computerSplit[j] = userGuess;
 				letterfound = true;
 				remaining--;
@@ -38,7 +44,7 @@ var wins = 0;
 			}
 			for (var k = 0; k < missedLetters.length; k++){
 				if(missedLetters[k] === userGuess){
-					letterused = true
+					letterused = true;
 				}
 			}
 		}
@@ -55,6 +61,7 @@ var wins = 0;
 			missedLetters=[];
 			down = 7;
 			computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+			computerSplit = computerGuess.split("");
 			for(var l = 0; l < computerGuess.length; l++){computerSplit[l] = "-"};
 			remaining = computerGuess.length;
 		}
@@ -63,6 +70,7 @@ var wins = 0;
 			missedLetters=[];
 			down = 7;
 			computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+			computerSplit = computerGuess.split("");
 			for(var m = 0; m < computerGuess.length; m++){computerSplit[m] = "-"};
 			remaining = computerGuess.length;
 		}
@@ -70,9 +78,9 @@ var wins = 0;
 	document.getElementById("NumberGuess").innerHTML = down;
 
 	//This adds to the missed letters
-	document.getElementById("guessedLetter").innerHTML = missedLetters
+	document.getElementById("guessedLetter").innerHTML = missedLetters;
 
 	document.getElementById("Word").innerHTML = computerSplit.join(" ");
 	//This increases the win count
-	document.getElementById("wincount").innerHTML = wins
+	document.getElementById("wincount").innerHTML = wins;
 	}
