@@ -1,4 +1,4 @@
-var wins = 0;
+	var wins = 0;
 	// Here we have the computer's choices
 	var computerChoices = ["sammy","goat","rizzo","curse","bryant","wood"];
 	
@@ -22,6 +22,11 @@ var wins = 0;
 
 	//This displays the letters of the computers guess	
 	document.getElementById("Word").innerHTML = computerSplit.join(" ");
+
+	document.getElementById("winimg").style.display = "none";
+
+	document.getElementById("loseimg").style.display = "none";
+	
 
 	document.onkeyup = function (event){
 		var userGuess = event.key;
@@ -56,7 +61,7 @@ var wins = 0;
 			
 		}
 		if (remaining === 0) {
-			alert("you win!");
+			alert("Homerun, You Win!");
 			wins++;
 			missedLetters=[];
 			down = 7;
@@ -64,15 +69,19 @@ var wins = 0;
 			computerSplit = computerGuess.split("");
 			for(var l = 0; l < computerGuess.length; l++){computerSplit[l] = "-"};
 			remaining = computerGuess.length;
+			document.getElementById("winimg").style.display = "block";
+			document.getElementById("loseimg").style.display = "none";
 		}
 		if (down === 0) {
-			alert("you lose!")
+			alert("Strike Three, You're Out!")
 			missedLetters=[];
 			down = 7;
 			computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 			computerSplit = computerGuess.split("");
 			for(var m = 0; m < computerGuess.length; m++){computerSplit[m] = "-"};
 			remaining = computerGuess.length;
+			document.getElementById("loseimg").style.display = "block";
+			document.getElementById("winimg").style.display = "none";
 		}
 	
 	document.getElementById("NumberGuess").innerHTML = down;
