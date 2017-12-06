@@ -8,124 +8,57 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h1>Chicago Cubs Hangman<h1>
+				<h1 class="jumbotron">Chicago Cubs Hangman<h1>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-4 panel panel-primary">
 				Cubs Image
 			</div>
+			<div class="col-md-2"></div>
 			<div class="col-md-6">
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-12 panel panel-primary">
 						Press Any Key to Get Started!
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-12 panel panel-primary">
 						Wins <span id=wincount></span>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-12 panel panel-primary">
 						Current Word
 					</div>
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-12 panel panel-primary">
 						<span id="Word"></span>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-12 panel panel-primary">
 						Number of Guesses Remaining
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-12 panel panel-primary">
 						<span id="NumberGuess">15</span>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-12 panel panel-primary">
 						Letters Already Guessed
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-12">
-						<span id="guessedLetter"></span>
+					<div class="col-md-12 panel panel-primary">
+						<span id="guessedLetter">Misses</span>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
-<script type="text/javascript">
-	// Here we have the computer's choices
-	var computerChoices = ["sammy","goat","rizzo","curse","bryant","wood"];
-	var wins = 0;
-	var down = 15;
-
-	// This is the computer's choice
-	var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-
-	// This parses the computer's guess into an array of letters
-	var computerSplit = computerGuess.split("");
-
-	//Setting my missed letters array
-	var missedLetters = [];
-
-	var remaining = computerGuess.length;
-
-	//This turns the letters into dashes
-	for(var i = 0; i < computerGuess.length; i++){
-		computerSplit[i] = "-"
-	};
-
-
-	//This displays the letters of the computers guess	
-	document.getElementById("Word").innerHTML = computerSplit.join(" ");
-	
-
-	document.onkeyup = function (event){
-		var userGuess = event.key;
-		var letterfound = false;
-		var letterused = false;
-
-		if ((down > 0) && (remaining > 0)){
-			for (var j = 0; j < computerGuess.length; j++){
-				if (computerGuess[j] === userGuess){
-				computerSplit[j] = userGuess;
-				letterfound = true;
-				remaining--;
-				}
-			}
-			for (var k = 0; k < missedLetters.length; k++){
-				if(missedLetters[k] === userGuess){
-					letterused = true
-				}
-			}
-		}
-		if ((letterfound === false) && (letterused === false)){
-			//This lowers the counter
-			down--;
-			//this adds to the missed letters array
-			missedLetters.push(userGuess)
-			document.getElementById("NumberGuess").innerHTML = down;
-		}
-		if (remaining === 0) {
-			alert("you win!");
-		}
-		if (down === 0) {
-			alert("you lose!")
-		}
-
-	//This adds to the missed letters
-	document.getElementById("guessedLetter").innerHTML = missedLetters
-
-	document.getElementById("Word").innerHTML = computerSplit.join(" ");
-	}
-	//This increases the win count
-	document.getElementById("wincount").innerHTML = wins
-
-</script>
+<script type="text/javascript" src="javascript/game.js"></script>
 </html>
